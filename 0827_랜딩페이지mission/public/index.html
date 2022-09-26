@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <script src="https://code.jquery.com/jquery-latest.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+        <title>작심삼십</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap Icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- SimpleLightbox plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <script>
+
+            $(document).ready(()=>{
+              function joinCall(){
+                let idvalue = $("#idvalue").val();
+                let pwdvalue = $("#pwdvalue").val();
+                $.ajax({
+                    url: "https://us-central1-bini0827mission.cloudfunctions.net/join",
+                    type: "POST",
+                    data: {id:idvalue, pwd:pwdvalue},
+                    dataType: "json"
+                })
+                .done(function(json) {
+                });
+              }
+
+              function loginCall(){
+                let idvalue = $("#idvalue").val();
+                let pwdvalue = $("#pwdvalue").val();
+                $.ajax({
+                    url: "https://us-central1-bini0827mission.cloudfunctions.net/login",
+                    type: "POST",
+                    data: {id:idvalue, pwd:pwdvalue},
+                    dataType: "json"
+                })
+                .done(function(json) {
+                  alert(json["reslut"]);
+                });
+              }
+
+              function sendCall(){
+                let phoneval = $("#phone").val();
+
+                $.ajax({
+                    url: "https://us-central1-bini0827mission.cloudfunctions.net/sendSMS",
+                    type: "POST",
+                    data: {phone:phoneval},
+                    dataType: "json"
+                })
+                .done(function(json) {
+                  console.log(json);
+                });
+              }
+
+
+              $("#join").on("click",()=>{
+                joinCall();
+              })
+
+              $("#login").on("click", ()=>{
+                loginCall();
+              })
+
+              $("#send").on("click", ()=>{
+                sendCall();
+              });
+            })
+
+
+        </script>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#page-top">작심삼십</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 h-100">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-end">
+                        <h1 class="text-white font-weight-bold">성공하는 습관, 30일 챌린지</h1>
+                        <hr class="divider" />
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">
+                        <p class="text-white-75 mb-5">30일 뒤 달라진 내 모습과 달성 축하금까지!</p>
+                        <p class="text-white-75 mb-5">당신의 삶이 180도 변하게 될 겁니다.</p>
+                        <a class="btn btn-primary btn-xl" href="#about">더 알아보기</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- About-->
+        <section class="page-section bg-primary" id="about">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="text-white mt-0">성공하기 위한 발판을 만들어 드립니다.</h2>
+                        <hr class="divider divider-light" />
+                        <p class="text-white-75 mb-4">삶에서 새로운 변화가 없는 이유?</p>
+                        <h3 class="text-white mt-10"> 행동으로 옮기지 않았기 때문!</h3>
+                        <h4 class="text-white mt-1l" text-decoration="underline">작심삼십과 함께 성공하는 습관을 만들어보세요<h4>
+                        <a class="btn btn-light btn-xl" href="#services">Get Started!</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact-->
+        <section class="page-section" id="contact">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6 text-center">
+                        <h2 class="mt-0">챌린지 신청하기</h2>
+                        <hr class="divider" />
+                        <p class="text-muted mb-5">챌린지 신청을 원하실 경우 아래 사항을 남겨주세요:D</p>
+                    </div>
+                </div>
+
+                            <input type="text" id ="idvalue" placeholder="아이디">
+                            <input type="text" id ="pwdvalue" placeholder="패스워드">
+                            <input type="text" id="phone" placeholder="휴대폰번호">
+
+                            <button id ="join">회원가입</button>
+                            <button id ="login">로그인</button>
+                            <button id ="send">메시지 보내기</button>
+
+
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-4 text-center mb-5 mb-lg-0">
+                        <i class="bi-phone fs-2 mb-3 text-muted"></i>
+                        <div>+82 10-1234-1105</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="bg-light py-5">
+            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - 작심삼십</div></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- SimpleLightbox plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
